@@ -1,0 +1,30 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+
+
+    <h1>Log in</h1>
+    <style >
+   body{
+    background-color: #0f121f;
+    background-image: url('http://mdbootstrap.com/img/Photos/Others/images/91.jpg');
+    background-repeat-y: no-repeat;
+    color: #fff;
+}
+</style>
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <form class="site-form" action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        {{ form}}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}" />
+        {% endif %}
+        
+        <input type="submit" value="Login" />
+    </form>
+    <p>Not got an account? <a href="{% url 'accounts:signup' %}">Sign Up</a></p>
+
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+  
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        
+{%for message in messages%}
+         <div class="alert alert-warning alert-dismissable" role="alert">
+           <button class="close" data-dismiss="alert">
+            <small><sup>x</sup></small>
+           </button>
+          {{message}}
+         </div>
+        {%endfor%}
+     
+
+        <meta charset="utf-8">
+        <title>Djangonauts</title>
+        <link rel="stylesheet" href="/static/assets/styles.css">
+    </head>
+    <body>
+        <header class="wrapper">
+           
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
+                    <li>
+                         <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                        
+                    </li>
+                    <li><a href="{% url 'about'%}">HOme</a></li>
+                    <li><a href="{% url 'articles:create' %}" class="highlight">New Article</a></li>
+                    {% else %}
+                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                    <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+                    <li><a href="{% url 'about'%}">HOme</a>
+
+
+
+
+
+
+
+
+
+                    {% endif %}
+                </ul>
+
+            </nav>
+
+        </header>
+        <div class="wrapper">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
